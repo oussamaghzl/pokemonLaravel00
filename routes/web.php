@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/formulaire-type', [TypeController::class,'create']);
+Route::post('/creation-type', [TypeController::class,'store']);
+
+// Pokemon
+
+Route::get('/', [PokemonController::class,'index']);
+Route::get('/formulaire-pokemon', [PokemonController::class,'create']);
+
+
+Route::get('/show/{id}', [PokemonController::class,'show']);
+
+
+Route::post('/creation-pokemon', [PokemonController::class,'store']);
+Route::post('/modification-pokemon/{id}', [PokemonController::class,'update']);
+Route::post('/suppr/{id}', [PokemonController::class,'destroy']);
+
+
